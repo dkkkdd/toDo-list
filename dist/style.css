@@ -291,7 +291,7 @@ table {
     visibility: hidden;
     opacity: 0;
 }
-.confirm-widow{
+.confirm-window{
     position: fixed;
     top: 0;
     left: 0;
@@ -324,15 +324,19 @@ table {
     display: flex;
     gap: 1em;
     justify-content: center;
-    /* flex: 1 auto; */
 }
 .confirm-btn-container button {
-  flex: 1;            /* каждая кнопка тянется равномерно */
+  flex: 1; 
 }
 :root{
     --theme-color: #214228;
     --body-color: #1c1c1c;
     --text-color: #fff;
+}
+
+.none{
+    visibility: hidden;
+    opacity: 0;
 }
 
 body{
