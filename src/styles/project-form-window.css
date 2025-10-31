@@ -1,0 +1,70 @@
+.project-form-window{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000b7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+.project-form{
+    position: relative;
+    background-color: #fff;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+    border-radius: 10px;
+    gap: 1em;
+    width: 50%;
+}
+
+.project-form input{
+    border: 3px solid var(--theme-color);
+    color: var(--theme-color);
+    border-radius: 10px;
+    padding: 1em 2em;
+    margin-bottom: 0.5em;
+}
+
+.project-form select:hover{
+    cursor: pointer;
+}
+
+.project-form-validator{
+    color: rgb(141, 56, 56);
+    position: absolute;
+    top: 36%;
+    font-size: 0.7em;
+    transition: all 0.2s ease;
+    visibility: visible;
+    opacity: 1;
+}
+
+.cancel-project-btn{
+    background-color: #fff;
+    border: 3px solid var(--theme-color);
+    color: var(--theme-color);
+}
+
+.cancel-project-btn:hover{
+    border-color: #132717;;
+    color: #132717;
+    background-color: #fff;
+}
+
+.none{
+    visibility: hidden;
+    opacity: 0;
+}

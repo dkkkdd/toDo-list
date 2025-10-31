@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-
   entry: "./src/index.js",
 
   output: {
@@ -39,17 +38,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      favicon: './src/img/favicon.ico',
+    //   favicon: './src/img/favicon.ico',
 
     }),
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: "src/data", to: "data" },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: "src/data", to: "data" },
+    //   ],
+    // }),
   ],
 
 };

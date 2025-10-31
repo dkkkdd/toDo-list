@@ -1,0 +1,21 @@
+.btn{
+    background-color: var(--theme-color);
+    padding: 1em 2em;
+    color: var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover{
+    background-color: #132717;
+}
+
+.icon-star-full{
+    color: yellow;
+}
+
+.none{
+    visibility: hidden;
+    opacity: 0;
+}

@@ -1,0 +1,46 @@
+.aside {
+    width: 30em;
+    background-color: #ffffff;
+    padding: 1em;
+    overflow-y: auto; 
+    border-radius: 10px;
+}
+
+.projects{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 2em 0;
+}
+
+.project-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 1em;
+    background-color: var(--theme-color);
+    transition: all 0.2s ease;
+}
+
+.project-card:hover{
+    transform: scale(1.01);
+}
+
+.project-setting{
+    display: flex;
+    gap: 0.8em;
+    font-size: 1.2em;
+}
+
+.project-setting span{
+    transition: all 0.2s ease;
+}
+.project-setting span:hover{
+    color: #000;
+    cursor: pointer;
+}
+
+.important-project{
+    background-color: #5d8366;
+}

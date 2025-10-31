@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+@import './null.css';
+@import './general.css';
+@import './aside.css';
+@import './content.css';
+@import './fonts.css';
+@import './project-form-window.css';
+@import './confirmWindow.css';
+
+
+:root{
+    --theme-color: #214228;
+    --body-color: #1c1c1c;
+    --text-color: #fff;
+}
+
+body{
+    position: relative;
+    background-color: var(--body-color);
+    color: var(--text-color);
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    padding: 0 1em;
+}
+
+header{
+    background-color: var(--theme-color);
+    padding: 1em 0;
+    text-align: center;
+    font-size: 3em;
+}
+.main {
+    display: flex;
+    gap: 1em;
+    margin: 1em 0;
+}

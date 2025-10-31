@@ -1,0 +1,9 @@
+
+.content {
+    flex: 1; 
+    padding: 2em;
+    background-color: #242424;
+    overflow-y: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+}
