@@ -15,6 +15,11 @@
     --text-color: #fff;
 }
 
+.none{
+    visibility: hidden;
+    opacity: 0;
+}
+
 body{
     position: relative;
     background-color: var(--body-color);

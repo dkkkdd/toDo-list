@@ -1,6 +1,8 @@
+
+// создаем окно с подтверждением удаления
 export const comfirmWindow = () => {
     const window = document.createElement('div');
-    window.classList.add('confirm-widow', 'none');
+    window.classList.add('confirm-window', 'none');
 
     const card = document.createElement('div');
     card.classList.add('confirm-card');

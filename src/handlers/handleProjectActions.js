@@ -6,7 +6,7 @@ import { formStore } from "../components/formStore.js";
 export const setupProjectActionHandlers = () => {
   const projectsDiv = document.querySelector('.projects');
   const projectFilter = document.querySelector('#project-priority-filter');
-  const confirmWindow = document.querySelector('.confirm-widow');
+  const confirmWindow = document.querySelector('.confirm-window');
   const deleteProjectBtn = document.querySelector('.delete-project-btn');
 
   const projectFormWindow = document.querySelector('.project-form-window');
