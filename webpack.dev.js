@@ -1,11 +1,11 @@
- const { merge } = require('webpack-merge');
- const common = require('./webpack.common.js');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 
- module.exports = merge(common, {
-   mode: 'development',
-   devtool: 'inline-source-map',
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
 
-    devServer: {
+  devServer: {
     static: './dist',
     watchFiles: ['./src/index.html'],
     open: true,
@@ -13,10 +13,9 @@
     port: 3000,
     compress: true,
     historyApiFallback: true,
-    },
-
-    optimization: {
-    minimize: false, 
   },
 
- });
+  optimization: {
+    minimize: false,
+  },
+});

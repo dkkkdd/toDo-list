@@ -1,9 +1,112 @@
-
 .content {
-    flex: 1; 
-    padding: 2em;
-    background-color: #242424;
-    overflow-y: auto;
-    margin: 0 auto;
-    border-radius: 10px;
+  flex: 1;
+  overflow-y: auto;
+  margin: 0 auto;
+  background: var(--body-color);
+  border-radius: 18px;
+  padding: 2em 1.5em;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  position: relative;
+  z-index: 2;
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+.task-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1em 1.2em;
+  border-radius: 12px;
+  background: var(--card-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-card-color);
+  transition: all 0.25s ease;
+  gap: 0.5em;
+}
+.task-card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 0px 4px #3fbea3;
+}
+.task-card.done .task-title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.task-card.done {
+  opacity: 0.6;
+}
+
+.task-title {
+  overflow-wrap: anywhere;
+  line-height: 120%;
+}
+
+/* ========================== */
+.task-comment {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.main-task-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+.task-deadline {
+  font-size: 0.7em;
+  color: #3a856e;
+}
+
+.task-deadline.overdue {
+  color: var(--error-color);
+  font-weight: 600;
+}
+
+.task-card.overdue {
+  background-color: var(--missed-deadline);
+}
+.date {
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+}
+
+.task-card .main-task-content .setting .priority {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background-color: #85ffda;
+  border-radius: 50%;
+  padding: 3px;
+  color: #2d48c2;
+}
+.task-card .main-task-content .setting .priority:hover {
+  transform: scale(1);
+  cursor: default;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  gap: 0.3em;
+}
+
+.icon-radio-checked,
+.icon-radio-unchecked {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.icon-radio-checked,
+.icon-radio-unchecked:hover {
+  color: #777;
 }

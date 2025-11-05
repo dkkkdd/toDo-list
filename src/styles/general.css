@@ -1,21 +1,94 @@
-.btn{
-    background-color: var(--theme-color);
-    padding: 1em 2em;
-    color: var(--text-color);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+/* фильтер */
+.filter {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--important-project-card);
+  font-size: 1em;
+  color: #747474;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.filter-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 1em;
 }
 
-.btn:hover{
-    background-color: #132717;
+.filter-container select {
+  width: 60%;
 }
 
-.icon-star-full{
-    color: yellow;
+.filter:focus,
+.filter:hover {
+  border-color: var(--sub-theme-color);
 }
 
-.none{
-    visibility: hidden;
-    opacity: 0;
+label[for='project-priority-filter'],
+label[for='task-filter'] {
+  font-size: 0.9em;
+  color: #777;
+  font-weight: 500;
+}
+
+/* ====тема */
+.theme {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  padding: 0.3em 0.6em;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--theme-color), #6affdf) border-box;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  background-image:
+    linear-gradient(var(--body-color, #fff), var(--body-color, #fff)),
+    linear-gradient(135deg, var(--sub-theme-color), #bdbdbd); /* градиент рамки */
+  box-shadow: 0 0 10px #6affdf55;
+  transition: all 0.3s ease;
+}
+
+.theme span {
+  color: #6e6e6e;
+  padding: 0.5em 0.3em;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+}
+
+.theme span.active {
+  color: var(--sub-theme-color);
+  transform: scale(1.2);
+}
+
+.theme:hover {
+  box-shadow: 0 0 10px var(--sub-theme-color);
+}
+
+/* Иконки в настройках проекта */
+.setting {
+  display: flex;
+  gap: 0.8em;
+  font-size: 1.2em;
+  color: #999;
+}
+
+.setting span:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.empty-div {
+  font-size: 1em;
+  font-weight: 500;
+  text-align: center;
+  color: #aaa;
+  padding: 3em 1em;
+  border: 1px dashed #ddd;
+  border-radius: 12px;
+  background: var(--body-color);
+  font-family: 'Roboto';
 }

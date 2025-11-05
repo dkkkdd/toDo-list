@@ -1,0 +1,100 @@
+.clear-btn {
+  max-width: 7em;
+  font-size: 0.8em;
+  border-radius: 12px;
+  padding: 1em 1.4em;
+  font-size: 1em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+  background: var(--btn-bg);
+}
+
+.clear-btn:hover {
+  background: var(--important-project-card);
+}
+
+/*  aside/content btns */
+.btn {
+  position: relative;
+  max-width: 10em;
+  border-radius: 12px;
+  padding: 1em 1.4em;
+  font-size: 1em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+
+  background: var(--btn-bg);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--body-color),
+    var(--sub-theme-color),
+    var(--body-color),
+    var(--sub-theme-color),
+    var(--body-color)
+  );
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.btn.create-btn::before {
+  animation: rotateBorder 9s linear infinite;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: var(--btn-bg);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn:hover {
+  color: var(--sub-theme-color);
+  transform: translateY(-1px);
+  box-shadow: 0 0px 12px #00ffc879;
+}
+
+.btn:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+:root.dark .btn:hover {
+  color: var(--sub-theme-color);
+}

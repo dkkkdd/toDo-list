@@ -1,46 +1,100 @@
 .aside {
-    width: 30em;
-    background-color: #ffffff;
-    padding: 1em;
-    overflow-y: auto; 
-    border-radius: 10px;
+  width: 28em;
+  background: var(--body-color);
+  border-radius: 18px;
+  padding: 2em 1.5em;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  position: relative;
+  isolation: isolate;
 }
 
-.projects{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin: 2em 0;
+/* чтобы радиусы не обрезались при скролле */
+.aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--body-color);
+  border-radius: 18px;
+  z-index: -1;
 }
 
-.project-card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 10px;
-    padding: 1em;
-    background-color: var(--theme-color);
-    transition: all 0.2s ease;
+/* скрываем фон скролла и стилизуем под тему */
+.aside::-webkit-scrollbar {
+  width: 8px;
 }
 
-.project-card:hover{
-    transform: scale(1.01);
+.aside::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
 }
 
-.project-setting{
-    display: flex;
-    gap: 0.8em;
-    font-size: 1.2em;
+.aside::-webkit-scrollbar-thumb {
+  background: var(--sub-theme-color);
+  border-radius: 10px;
 }
 
-.project-setting span{
-    transition: all 0.2s ease;
-}
-.project-setting span:hover{
-    color: #000;
-    cursor: pointer;
+/* Контейнер проектов */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
 }
 
-.important-project{
-    background-color: #5d8366;
+/* Карточки проектов */
+.project-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.2em;
+  border-radius: 12px;
+  background: var(--card-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-card-color);
+  transition: all 0.25s ease;
+  gap: 0.5em;
+}
+
+.project-card.active {
+  background: var(--active-project);
+}
+
+.project-card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 0px 10px #3fbea3;
+  transform: translateY(-2px);
+}
+.project-title {
+  overflow-wrap: anywhere;
+  line-height: 120%;
+}
+
+/* Важный проект */
+
+.important-project {
+  position: relative;
+  background: var(--important-project-card);
+  border-radius: 10px;
+  overflow: hidden; /* чтобы градиент не вылазил за радиус */
+}
+
+/* Градиентная полоса слева */
+.important-project::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: linear-gradient(180deg, var(--sub-theme-color), #6affdf);
+  border-radius: 10px 0 0 10px;
+}
+
+.important-flag {
+  color: var(--sub-theme-color);
 }

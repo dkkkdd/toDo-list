@@ -1,45 +1,77 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 
 @import './null.css';
+@import './fonts.css';
 @import './general.css';
+@import './buttons.css';
+@import './form-window.css';
 @import './aside.css';
 @import './content.css';
-@import './fonts.css';
-@import './project-form-window.css';
-@import './confirmWindow.css';
 
-
-:root{
-    --theme-color: #214228;
-    --body-color: #1c1c1c;
-    --text-color: #fff;
+:root {
+  --theme-color: #214228;
+  --sub-theme-color: #00ffc8;
+  --body-color: #fff;
+  --text-color: #222;
+  --card-color: #f9fafb;
+  --border-card-color: #f1f3f5;
+  --card-color-hover: #fff;
+  --card-border-hover: #d0e1ff;
+  --important-project-card: rgb(243, 243, 243);
+  --btn-bg: #f5f7fa;
+  --active-project: #b0ffee;
+  --error-color: rgb(177, 71, 71);
+  --missed-deadline: #ffe484;
 }
 
-.none{
-    visibility: hidden;
-    opacity: 0;
+:root.dark {
+  --body-color: #131313;
+  --text-color: #fff;
+  --border-card-color: #3a3a3a;
+  --card-color: rgb(20, 20, 20);
+  --card-color-hover: #131313;
+  --card-border-hover: #808080;
+  --important-project-card: #222;
+  --btn-bg: #272727;
+  --active-project: #5e7772;
+  --missed-deadline: #3b3726;
 }
 
-body{
-    position: relative;
-    background-color: var(--body-color);
-    color: var(--text-color);
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+.none {
+  display: none;
+}
+.theme {
+  color: #222;
+}
+body {
+  position: relative;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.3s ease;
 }
 
-.container{
-    padding: 0 1em;
+.container {
+  padding: 0 1em;
 }
 
-header{
-    background-color: var(--theme-color);
-    padding: 1em 0;
-    text-align: center;
-    font-size: 3em;
+.header {
+  color: var(--text-color);
+  padding: 1.2em 0;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  letter-spacing: 0.5px;
 }
+
 .main {
-    display: flex;
-    gap: 1em;
-    margin: 1em 0;
+  display: flex;
+  gap: 1em;
+  margin: 1em 0;
 }
