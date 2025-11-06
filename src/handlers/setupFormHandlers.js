@@ -2,6 +2,8 @@
 import { modalManipulation } from '../forms/formManipulation.js';
 import { clearForm, projectFormValidation } from '../forms/clearAndValidForm.js';
 import { formStore } from '../stores/formStore.js';
+import clickSoundFile from '../sounds/click.mp3';
+const clickSound = new Audio(clickSoundFile);
 
 /**
  * Универсальный обработчик для форм (проектов, задач, заметок и т.д.)
@@ -50,6 +52,8 @@ export const setupFormHandlers = (config) => {
   openBtn.addEventListener('click', () => {
     modalManipulation(formWindow, 'open');
     submitBtn.textContent = 'Add';
+    clickSound.currentTime = 0;
+    clickSound.play();
   });
 
   // закрыть форму
@@ -59,6 +63,8 @@ export const setupFormHandlers = (config) => {
     if (!isBackdrop && !isCancel) return;
 
     e.preventDefault();
+    clickSound.currentTime = 0;
+    clickSound.play();
     modalManipulation(formWindow, 'close');
     clearForm(form);
     formStore.reset();
@@ -82,12 +88,16 @@ export const setupFormHandlers = (config) => {
       // обновление
       store.update(projectToEdit, data);
       if (onUpdate) onUpdate(projectToEdit, data);
+      clickSound.currentTime = 0;
+      clickSound.play();
     } else {
       // создание
       const newItem = {
         id: crypto.randomUUID(),
         ...data,
       };
+      clickSound.currentTime = 0;
+      clickSound.play();
       if (onCreate) onCreate(newItem);
     }
 

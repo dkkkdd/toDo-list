@@ -8,8 +8,17 @@
   <body>
     <header class="header">To Do List App</header>
     <div class="container">
-      <div class="theme"><span class="icon-sun"></span><span class="icon-contrast"></span></div>
-
+      <button class="burger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="theme-settings">
+        <div class="theme t"><span class="icon-sun"></span><span class="icon-contrast"></span></div>
+        <div class="color-theme t">
+          <span class="icon-eyedropper"></span> <input type="color" name="color" id="color" />
+        </div>
+      </div>
       <main class="main">
         <!-- тут будет боковое меню с названиями проектов и возможностью их создавать/удалять/переименовывать/менять приоритетность-->
         <aside class="aside"></aside>

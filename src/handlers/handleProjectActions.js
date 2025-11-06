@@ -4,6 +4,8 @@ import { taskStore } from '../stores/taskStore.js';
 import { renderTasks } from '../render/tasks.js';
 import { modalManipulation } from '../forms/formManipulation.js';
 import { formStore } from '../stores/formStore.js';
+import clickSoundFile from '../sounds/click.mp3';
+const clickSound = new Audio(clickSoundFile);
 
 export const setupProjectActionHandlers = () => {
   const projectsDiv = document.querySelector('.projects');
@@ -23,12 +25,17 @@ export const setupProjectActionHandlers = () => {
     const isBackdrop = e.target.classList.contains('confirm-form-window');
     const isCancel = e.target.classList.contains('cancel-confirm-btn');
     if (!isBackdrop && !isCancel) return;
+    clickSound.currentTime = 0;
+    clickSound.play();
 
     modalManipulation(confirmWindow, 'close');
     projectToDelete = null; // сбрасываем
+    deleteMode = null;
   });
 
   clearAllBtn.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
     deleteMode = 'all';
     modalManipulation(confirmWindow, 'open');
   });
@@ -45,6 +52,8 @@ export const setupProjectActionHandlers = () => {
       });
       content.classList.remove('none');
       e.target.classList.add('active');
+      clickSound.currentTime = 0;
+      clickSound.play();
       const id = card.dataset.id;
       projectStore.setCurrentProject(id);
 
@@ -59,13 +68,14 @@ export const setupProjectActionHandlers = () => {
     if (e.target.classList.contains('icon-bin2')) {
       projectToDelete = card.dataset.id;
       deleteMode = 'single';
+      clickSound.currentTime = 0;
+      clickSound.play();
       modalManipulation(confirmWindow, 'open');
     }
 
-    if (
-      e.target.classList.contains('icon-flag')
-      // e.target.classList.contains('icon-star-full')
-    ) {
+    if (e.target.classList.contains('icon-flag')) {
+      clickSound.currentTime = 0;
+      clickSound.play();
       const id = card.dataset.id;
       const project = projectStore.getAll().find((project) => project.id === id);
       const newPriority = project.priority === 'important' ? 'default' : 'important';
@@ -73,6 +83,8 @@ export const setupProjectActionHandlers = () => {
     }
     // если нажали на иконку изменить, получаем айди проекта и сам проект
     if (e.target.classList.contains('icon-pencil')) {
+      clickSound.currentTime = 0;
+      clickSound.play();
       const changeId = card.dataset.id;
       const changeProject = projectStore.getAll().find((project) => project.id === changeId);
       if (!changeProject) return;
@@ -89,6 +101,8 @@ export const setupProjectActionHandlers = () => {
       prioritySelect.value = changeProject.priority;
       //   меняем надпись кнопки на сохранить изменения
       addBtn.textContent = 'Save changes';
+      clickSound.currentTime = 0;
+      clickSound.play();
       //   открываем саму форму
       modalManipulation(projectFormWindow, 'open');
     }
@@ -96,6 +110,8 @@ export const setupProjectActionHandlers = () => {
 
   // Удаление проекта
   deleteProjectBtn.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
     if (deleteMode === 'single' && projectToDelete) {
       projectStore.remove(projectToDelete);
       taskStore.removeByProject(projectToDelete);
@@ -113,6 +129,8 @@ export const setupProjectActionHandlers = () => {
   // Фильтрация
   projectFilter.addEventListener('change', () => {
     // фильтр проектов за приоритетом
+    clickSound.currentTime = 0;
+    clickSound.play();
     projectStore.setFilter(projectFilter.value);
   });
 };

@@ -12,6 +12,9 @@
   position: relative;
   z-index: 2;
 }
+.project-title-for-task {
+  line-height: 130%;
+}
 .tasks {
   display: flex;
   flex-direction: column;
@@ -31,7 +34,7 @@
 }
 .task-card:hover {
   border-color: var(--card-border-hover);
-  box-shadow: 0 0px 4px #3fbea3;
+  box-shadow: 0 0px 4px var(--sub-theme-color);
 }
 .task-card.done .task-title {
   text-decoration: line-through;
@@ -82,10 +85,10 @@
   position: absolute;
   top: -6px;
   left: -6px;
-  background-color: #85ffda;
+  background-color: var(--sub-theme-color);
   border-radius: 50%;
   padding: 3px;
-  color: #2d48c2;
+  color: #fff;
 }
 .task-card .main-task-content .setting .priority:hover {
   transform: scale(1);

@@ -9,10 +9,19 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    // publicPath: '/toDo-list/',
+    publicPath: '/toDo-list/',
     clean: true,
     assetModuleFilename: 'images/[name][ext]',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      favicon: './src/favicon.ico',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -34,15 +43,13 @@ module.exports = {
           filename: 'fonts/[name][ext]',
         },
       },
+      {
+        test: /\.(mp3|wav|ogg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'sounds/[name][ext]', // куда будет складываться звук в dist
+        },
+      },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      favicon: './src/favicon.ico',
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
-    }),
-  ],
 };

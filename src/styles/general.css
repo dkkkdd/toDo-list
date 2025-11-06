@@ -12,7 +12,6 @@
 .filter-container {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   gap: 1em;
 }
 
@@ -33,7 +32,7 @@ label[for='task-filter'] {
 }
 
 /* ====тема */
-.theme {
+.t {
   margin-top: 1em;
   display: flex;
   align-items: center;
@@ -42,14 +41,14 @@ label[for='task-filter'] {
   padding: 0.3em 0.6em;
   border-radius: 30px;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--theme-color), #6affdf) border-box;
+  background: linear-gradient(135deg, transparent, var(--sub-theme-color)) border-box;
   border: 2px solid transparent;
   background-clip: padding-box, border-box;
   background-origin: border-box;
   background-image:
     linear-gradient(var(--body-color, #fff), var(--body-color, #fff)),
-    linear-gradient(135deg, var(--sub-theme-color), #bdbdbd); /* градиент рамки */
-  box-shadow: 0 0 10px #6affdf55;
+    linear-gradient(135deg, var(--sub-theme-color), transparent); /* градиент рамки */
+  box-shadow: 0 0 5px var(--sub-theme-color);
   transition: all 0.3s ease;
 }
 
@@ -65,7 +64,7 @@ label[for='task-filter'] {
   transform: scale(1.2);
 }
 
-.theme:hover {
+.t:hover {
   box-shadow: 0 0 10px var(--sub-theme-color);
 }
 
@@ -91,4 +90,38 @@ label[for='task-filter'] {
   border-radius: 12px;
   background: var(--body-color);
   font-family: 'Roboto';
+}
+
+#color {
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+.color-theme {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: default;
+}
+
+.icon-eyedropper {
+  color: var(--sub-theme-color);
+  font-size: 1.3em;
+}
+
+.theme-settings {
+  display: flex;
+  gap: 1em;
+}
+.drag-ghost {
+  opacity: 0.4;
+  transform: scale(1.02);
+}
+
+.drag-chosen {
+  border: 2px dashed var(--sub-theme-color);
+}
+
+.dragging {
+  cursor: grab;
 }

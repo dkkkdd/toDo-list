@@ -53,6 +53,13 @@ export const taskStore = {
     this.notify();
   },
 
+  changePosition(from, to) {
+    const task = tasks.splice(from, 1)[0];
+    tasks.splice(to, 0, task);
+    this.saveToStorage();
+    this.notify;
+  },
+
   removeByProject(projectId) {
     let changed = false;
     for (let i = tasks.length - 1; i >= 0; i--) {

@@ -7,19 +7,18 @@
 @import './form-window.css';
 @import './aside.css';
 @import './content.css';
+@import './adaption.css';
 
 :root {
-  --theme-color: #214228;
-  --sub-theme-color: #00ffc8;
+  --sub-theme-color: rgb(209, 104, 34);
   --body-color: #fff;
   --text-color: #222;
   --card-color: #f9fafb;
   --border-card-color: #f1f3f5;
   --card-color-hover: #fff;
   --card-border-hover: #d0e1ff;
-  --important-project-card: rgb(243, 243, 243);
+  --important-project-card: rgb(231, 231, 231);
   --btn-bg: #f5f7fa;
-  --active-project: #b0ffee;
   --error-color: rgb(177, 71, 71);
   --missed-deadline: #ffe484;
 }
@@ -33,16 +32,14 @@
   --card-border-hover: #808080;
   --important-project-card: #222;
   --btn-bg: #272727;
-  --active-project: #5e7772;
+
   --missed-deadline: #3b3726;
 }
 
 .none {
   display: none;
 }
-.theme {
-  color: #222;
-}
+
 body {
   position: relative;
   background-color: var(--body-color);
@@ -68,6 +65,11 @@ body {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   letter-spacing: 0.5px;
+}
+@media (max-width: 450px) {
+  .header {
+    font-size: 25px;
+  }
 }
 
 .main {

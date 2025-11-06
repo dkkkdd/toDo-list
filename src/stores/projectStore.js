@@ -30,6 +30,12 @@ export const projectStore = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
     localStorage.setItem('current-project', currentProjectId || '');
   },
+  changePosition(from, to) {
+    const project = projects.splice(from, 1)[0];
+    projects.splice(to, 0, project);
+    this.saveToStorage();
+    this.notify;
+  },
 
   deleteAll() {
     projects.length = 0;

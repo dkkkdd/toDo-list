@@ -1,4 +1,5 @@
 .aside {
+  max-width: 28em;
   width: 28em;
   background: var(--body-color);
   border-radius: 18px;
@@ -59,30 +60,12 @@
   transition: all 0.25s ease;
   gap: 0.5em;
 }
-
-.project-card.active {
-  background: var(--active-project);
-}
-
-.project-card:hover {
-  border-color: var(--card-border-hover);
-  box-shadow: 0 0px 10px #3fbea3;
-  transform: translateY(-2px);
-}
-.project-title {
-  overflow-wrap: anywhere;
-  line-height: 120%;
-}
-
 /* Важный проект */
-
 .important-project {
   position: relative;
-  background: var(--important-project-card);
   border-radius: 10px;
-  overflow: hidden; /* чтобы градиент не вылазил за радиус */
+  overflow: hidden;
 }
-
 /* Градиентная полоса слева */
 .important-project::before {
   content: '';
@@ -91,8 +74,25 @@
   top: 0;
   bottom: 0;
   width: 7px;
-  background: linear-gradient(180deg, var(--sub-theme-color), #6affdf);
+  background: linear-gradient(180deg, var(--sub-theme-color), var(--important-project-card));
   border-radius: 10px 0 0 10px;
+}
+
+.project-card:hover {
+  box-shadow: 0 0px 10px var(--sub-theme-color);
+  transform: translateY(-2px);
+}
+.project-title {
+  overflow-wrap: anywhere;
+  line-height: 120%;
+}
+
+.project-card.active {
+  border-right: 2px solid var(--sub-theme-color);
+  border-bottom: 1px solid var(--sub-theme-color);
+  background: var(--important-project-card);
+  transform: translate(-2px);
+  color: var(--sub-theme-color);
 }
 
 .important-flag {
