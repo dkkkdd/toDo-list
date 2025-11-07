@@ -37,6 +37,7 @@
 .burger.active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
 @media (max-width: 1450px) {
   .aside {
     width: 20em;
@@ -89,8 +90,22 @@
 }
 
 @media (max-width: 550px) {
+  /* .project-card {
+    font-size: 14px;
+  }
+  .btn {
+    font-size: 14px;
+  } */
+
+  body {
+    font-size: 14px;
+  }
+  .aside {
+    gap: 1em;
+    padding: 4em 0.5em;
+  }
   .content {
-    padding: 0 0.5em;
+    padding: 1em 0.5em;
     gap: 1em;
   }
   .setting {
@@ -99,6 +114,6 @@
   .icon-flag,
   .icon-pencil,
   .icon-bin2 {
-    font-size: 20px;
+    font-size: 18px;
   }
 }

@@ -124,7 +124,7 @@ label[for='task-sorting'] {
   gap: 1em;
 }
 .drag-ghost {
-  opacity: 0.4;
+  opacity: 1;
   transform: scale(1.02);
 }
 
@@ -138,7 +138,7 @@ label[for='task-sorting'] {
 }
 
 .sortable-fallback {
-  opacity: 0.7 !important;
+  opacity: 0 !important;
   transform: scale(1.02) !important;
   z-index: 9999 !important;
   pointer-events: none;

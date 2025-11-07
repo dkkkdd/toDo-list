@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 2em;
   position: relative;
+  margin-bottom: 1em;
   z-index: 2;
 }
 .project-title-for-task {
