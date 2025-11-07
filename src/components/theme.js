@@ -42,7 +42,7 @@ export const chooseColorTheme = () => {
   // Загружаем сохранённую тему
   const savedTheme = localStorage.getItem('color');
   document.documentElement.style.setProperty('--sub-theme-color', savedTheme);
-  color.value = savedTheme;
+  color.value = savedTheme || '#403E9C';
 
   color.addEventListener('change', () => {
     clickSound.currentTime = 0;

@@ -148,3 +148,9 @@ export const projectStore = {
     subscribers.forEach((fn) => fn(this.getFiltered()));
   },
 };
+
+// 🩵 Если currentProjectId нет — назначаем первый проект
+if (!currentProjectId && projects.length > 0) {
+  currentProjectId = projects[0].id;
+  localStorage.setItem('current-project', currentProjectId);
+}
