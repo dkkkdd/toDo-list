@@ -101,6 +101,11 @@ export const setupTaskActionHandlers = () => {
   // Фильтрация
   sortFilter.addEventListener('change', () => {
     taskStore.setSort(sortFilter.value);
+    if (sortFilter.value !== 'all') {
+      tasksDiv.classList.remove('drag-enabled');
+    } else {
+      tasksDiv.classList.add('drag-enabled');
+    }
   });
   taskFilter.addEventListener('change', () => {
     // фильтр проектов за приоритетом

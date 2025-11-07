@@ -55,10 +55,18 @@ export const taskStore = {
   },
 
   changePosition(from, to) {
-    const task = tasks.splice(from, 1)[0];
-    tasks.splice(to, 0, task);
+    const currentProjectId = projectStore.getCurrentProject();
+    if (!currentProjectId) return;
+
+    const projectTasks = tasks.filter((t) => t.projectId === currentProjectId);
+    const [moved] = projectTasks.splice(from, 1);
+    projectTasks.splice(to, 0, moved);
+
+    let i = 0;
+    tasks = tasks.map((t) => (t.projectId === currentProjectId ? projectTasks[i++] : t));
+
     this.saveToStorage();
-    this.notify;
+    this.notify();
   },
 
   removeByProject(projectId) {

@@ -70,7 +70,7 @@ export const initialPage = () => {
     projectStore.setCurrentProject(savedProjects[0].id);
   }
 
-  const tasksList = document.querySelector('.tasks');
+  const tasksList = document.querySelector('.drag-enabled');
   setupDragFunction(tasksList, taskStore);
 
   const projectsList = document.querySelector('.projects');

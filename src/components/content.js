@@ -67,7 +67,7 @@ export const createContent = () => {
 
   // контейнер для проектов
   const tasksDiv = document.createElement('div');
-  tasksDiv.classList.add('tasks');
+  tasksDiv.classList.add('tasks', 'drag-enabled');
 
   // добавляем в aside
   content.append(projectTitle, organizing, createNewTaskBtn, clearAllBtn, tasksDiv);
