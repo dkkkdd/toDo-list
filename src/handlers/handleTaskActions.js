@@ -4,22 +4,20 @@ import { projectStore } from '../stores/projectStore.js';
 import { taskStore } from '../stores/taskStore.js';
 import { modalManipulation } from '../forms/formManipulation.js';
 import { formStore } from '../stores/formStore.js';
-import clickSoundFile from '../sounds/click.mp3';
-const clickSound = new Audio(clickSoundFile);
 
 export const setupTaskActionHandlers = () => {
   const taskFilter = document.querySelector('#task-filter');
+  const sortFilter = document.querySelector('#task-sorting');
   const confirmWindow = document.querySelector('.confirm-form-window');
   const deleteTaskBtn = document.querySelector('.confirm-btn');
   const clearAllBtn = document.querySelector('.clear-all-task-btn');
   const projectFormWindow = document.querySelector('.task-form-window');
   const tasksDiv = document.querySelector('.tasks');
+  const textarea = document.querySelector('textarea');
   let taskToDelete = null; // временно хранит id проекта, который нужно удалить
   let deleteMode = null;
 
   clearAllBtn.addEventListener('click', () => {
-    clickSound.currentTime = 0;
-    clickSound.play();
     deleteMode = 'all';
     modalManipulation(confirmWindow, 'open');
   });
@@ -35,8 +33,6 @@ export const setupTaskActionHandlers = () => {
     if (e.target.classList.contains('icon-bin2')) {
       taskToDelete = card.dataset.id;
       deleteMode = 'single';
-      clickSound.currentTime = 0;
-      clickSound.play();
       modalManipulation(confirmWindow, 'open');
     }
     if (
@@ -52,14 +48,14 @@ export const setupTaskActionHandlers = () => {
       if (newDone) {
         successSound.currentTime = 0;
         successSound.play();
-        console.log('pley');
+        if (navigator.vibrate) {
+          navigator.vibrate(100);
+        }
       }
     }
     // если нажали на иконку изменить, получаем айди проекта и сам проект
     if (e.target.classList.contains('icon-pencil')) {
       const changeId = card.dataset.id;
-      clickSound.currentTime = 0;
-      clickSound.play();
       const changeTask = taskStore.getAll().find((task) => task.id === changeId);
       if (!changeTask) return;
 
@@ -80,16 +76,12 @@ export const setupTaskActionHandlers = () => {
       taskComment.value = changeTask.comment;
       //   меняем надпись кнопки на сохранить изменения
       addBtn.textContent = 'Save changes';
-      clickSound.currentTime = 0;
-      clickSound.play();
       //   открываем саму форму
       modalManipulation(projectFormWindow, 'open');
     }
   });
   // Удаление проекта
   deleteTaskBtn.addEventListener('click', () => {
-    clickSound.currentTime = 0;
-    clickSound.play();
     if (deleteMode === 'single' && taskToDelete) {
       taskStore.remove(taskToDelete);
     } else if (deleteMode === 'all') {
@@ -101,10 +93,16 @@ export const setupTaskActionHandlers = () => {
     deleteMode = null; // сброс
   });
 
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto'; // сброс, чтобы корректно пересчитать
+    textarea.style.height = Math.min(textarea.scrollHeight, 15) + 'em'; // ограничение
+  });
+
   // Фильтрация
+  sortFilter.addEventListener('change', () => {
+    taskStore.setSort(sortFilter.value);
+  });
   taskFilter.addEventListener('change', () => {
-    clickSound.currentTime = 0;
-    clickSound.play();
     // фильтр проектов за приоритетом
     taskStore.setFilter(taskFilter.value);
   });

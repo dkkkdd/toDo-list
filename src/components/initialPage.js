@@ -1,5 +1,7 @@
 import { projectForm } from '../forms/projectForm.js';
 import { taskForm } from '../forms/taskForm.js';
+import { comfirmWindow } from '../forms/comfirmWindow.js';
+
 import { switchTheme, chooseColorTheme } from './theme.js';
 import { createAside } from './aside.js';
 import { createContent } from './content.js';
@@ -7,16 +9,12 @@ import { renderProjects } from '../render/projects.js';
 import { renderTasks } from '../render/tasks.js';
 import { projectStore } from '../stores/projectStore.js';
 import { taskStore } from '../stores/taskStore.js';
-
-import { comfirmWindow } from '../forms/comfirmWindow.js';
-
 import { setupProjectFormHandlers } from '../handlers/handleProjectForm.js';
 import { setupProjectActionHandlers } from '../handlers/handleProjectActions.js';
 import { setupTaskFormHandlers } from '../handlers/handleTaskForm.js';
 import { setupTaskActionHandlers } from '../handlers/handleTaskActions.js';
 import { setupBurgerMenu } from './burgerMenu.js';
-// import { chooseColorTheme } from './theme.js';
-import Sortable from 'sortablejs';
+import { setupDragFunction } from '../handlers/handleDrag.js';
 
 // 💡 Главная функция инициализации страницы
 export const initialPage = () => {
@@ -49,7 +47,7 @@ export const initialPage = () => {
   taskStore.subscribe((filteredTasks) => {
     renderTasks(tasksDiv, filteredTasks);
   });
-  //   projectForm();
+
   // === Навешиваем обработчики ===
   setupProjectFormHandlers();
   setupTaskFormHandlers();
@@ -58,9 +56,13 @@ export const initialPage = () => {
   setupTaskActionHandlers();
 
   setupBurgerMenu();
-  //   setupProjectFormHandlers();
 
-  // === При первом запуске ===
+  const textarea = document.querySelector('textarea');
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto'; // сброс, чтобы корректно пересчитать
+    textarea.style.height = Math.min(textarea.scrollHeight, 200) + 'px'; // ограничение
+  });
 
   // === Восстанавливаем текущий проект при загрузке ===
   const savedProjects = projectStore.getAll();
@@ -69,44 +71,11 @@ export const initialPage = () => {
   }
 
   const tasksList = document.querySelector('.tasks');
-  new Sortable(tasksList, {
-    animation: 200, // плавная анимация
-
-    ghostClass: 'drag-ghost', // класс для "тени" при перетаскивании
-    chosenClass: 'drag-chosen', // класс для выбранного элемента
-    dragClass: 'dragging', // класс, применяемый во время перетаскивания
-    forceFallback: false, // использовать HTML5 dnd или JS fallback
-    easing: 'cubic-bezier(0.25, 1, 0.5, 1)', // кривая плавности
-    delay: 0, // задержка перед началом drag (удобно для мобильных)
-    delayOnTouchOnly: true, // delay только для тач-устройств
-
-    group: 'shared',
-    onEnd: (evt) => {
-      taskStore.changePosition(Number(evt.oldIndex) - 1, Number(evt.newIndex) - 1);
-    },
-  });
+  setupDragFunction(tasksList, taskStore);
 
   const projectsList = document.querySelector('.projects');
-  new Sortable(projectsList, {
-    animation: 200, // плавная анимация
-    ghostClass: 'drag-ghost', // класс для "тени" при перетаскивании
-    chosenClass: 'drag-chosen', // класс для выбранного элемента
-    dragClass: 'dragging', // класс, применяемый во время перетаскивания
-    forceFallback: false, // использовать HTML5 dnd или JS fallback
-    easing: 'cubic-bezier(0.25, 1, 0.5, 1)', // кривая плавности
-    delay: 0, // задержка перед началом drag (удобно для мобильных)
-    delayOnTouchOnly: true, // delay только для тач-устройств
+  setupDragFunction(projectsList, projectStore);
 
-    // Разрешает только сортировку внутри контейнера, без перетаскивания в другие
-    group: {
-      name: 'project',
-      pull: false,
-      put: false,
-    },
-    onEnd: (evt) => {
-      projectStore.changePosition(Number(evt.oldIndex) - 1, Number(evt.newIndex) - 1);
-    },
-  });
   projectStore.notify(); // отрисовать проекты
   taskStore.notify(); // и задачи
 };

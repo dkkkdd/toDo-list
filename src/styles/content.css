@@ -113,3 +113,16 @@
 .icon-radio-unchecked:hover {
   color: #777;
 }
+
+.tasks,
+.content {
+  -webkit-overflow-scrolling: touch; /* smooth scroll на iOS */
+  touch-action: pan-y; /* разрешает вертикальный скролл */
+}
+.organizing {
+  display: flex;
+  align-items: center;
+  /* justify-content: space */
+  gap: 1em;
+  width: 100%;
+}

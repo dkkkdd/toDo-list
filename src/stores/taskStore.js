@@ -37,6 +37,7 @@ if (saved) {
 
 const subscribers = new Set();
 let currentFilter = 'all';
+let currentSort = null;
 
 export const taskStore = {
   getAll() {
@@ -84,29 +85,58 @@ export const taskStore = {
     const currentProjectId = projectStore.getCurrentProject();
     if (!currentProjectId) return [];
 
+    // Сначала фильтруем
     let filtered = tasks.filter((t) => t.projectId === currentProjectId);
 
     switch (currentFilter) {
-      case 'all':
-        return filtered;
       case 'done':
-        return filtered.filter((t) => t.done);
+        filtered = filtered.filter((t) => t.done);
+        break;
       case 'undone':
-        return filtered.filter((t) => !t.done);
-      case 'priority':
-        return [...filtered].sort((a, b) => {
-          const order = { urgent: 3, high: 2, default: 1 };
-          return order[b.priority] - order[a.priority];
-        });
-      case 'date':
-        return [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+        filtered = filtered.filter((t) => !t.done);
+        break;
+      case 'deadline':
+        filtered = filtered.filter((t) => new Date(t.date) < new Date());
+        break;
       default:
-        return filtered;
+        break;
     }
+
+    // Потом сортируем
+    if (currentSort) {
+      filtered = [...filtered]; // копия чтобы не мутировать
+      if (currentSort === 'priority') {
+        const order = { urgent: 3, high: 2, default: 1 };
+        filtered.sort((a, b) => order[b.priority] - order[a.priority]);
+      } else if (currentSort === 'date') {
+        filtered.sort((a, b) => {
+          const dateA = a.date ? new Date(a.date) : null;
+          const dateB = b.date ? new Date(b.date) : null;
+
+          // Если обе даты отсутствуют порядок не меняетс
+          if (!dateA && !dateB) return 0;
+
+          // Если у A нет даты онв идёт после B
+          if (!dateA) return 1;
+
+          // Если у B нет даты  она идёт после A
+          if (!dateB) return -1;
+
+          // Если обе есть сравниваем как обычно
+          return dateA - dateB;
+        });
+      }
+    }
+
+    return filtered;
   },
 
   setFilter(filter) {
     currentFilter = filter;
+    this.notify();
+  },
+  setSort(sort) {
+    currentSort = sort;
     this.notify();
   },
 

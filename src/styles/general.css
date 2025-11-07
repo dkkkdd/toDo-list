@@ -1,5 +1,6 @@
 /* фильтер */
-.filter {
+.filter,
+.sorting {
   width: 100%;
   background: transparent;
   border: none;
@@ -8,27 +9,36 @@
   color: #747474;
   outline: none;
   transition: border-color 0.2s ease;
+  padding: 0.3em 0.5em;
 }
-.filter-container {
+.filter-container,
+.sorting-container {
   display: flex;
   align-items: center;
   gap: 1em;
+  flex: 1;
+  width: 100%;
 }
 
-.filter-container select {
-  width: 60%;
+.filter-container select,
+.sorting-container select {
+  width: 100%;
 }
 
 .filter:focus,
-.filter:hover {
+.filter:hover,
+.sorting:focus,
+.sorting:hover {
   border-color: var(--sub-theme-color);
 }
 
 label[for='project-priority-filter'],
-label[for='task-filter'] {
+label[for='task-filter'],
+label[for='task-sorting'] {
   font-size: 0.9em;
   color: #777;
   font-weight: 500;
+  width: 6em;
 }
 
 /* ====тема */
@@ -120,8 +130,16 @@ label[for='task-filter'] {
 
 .drag-chosen {
   border: 2px dashed var(--sub-theme-color);
+  opacity: 0.8;
 }
 
 .dragging {
   cursor: grab;
+}
+
+.sortable-fallback {
+  opacity: 0.7 !important;
+  transform: scale(1.02) !important;
+  z-index: 9999 !important;
+  pointer-events: none;
 }

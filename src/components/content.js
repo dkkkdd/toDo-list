@@ -11,15 +11,39 @@ export const createContent = () => {
   const text = document.createTextNode(' New Task');
   createNewTaskBtn.append(icon, text);
 
+  const organizing = document.createElement('div');
+  organizing.classList.add('organizing');
+
+  const taskSortLabel = document.createElement('label');
+  taskSortLabel.textContent = 'Sort by:';
+  taskSortLabel.setAttribute('for', 'task-sorting');
+
+  const taskSorting = document.createElement('select');
+  taskSorting.classList.add('sorting');
+  taskSorting.id = 'task-sorting';
+  const sorting = [
+    { value: 'all', text: 'All' },
+    { value: 'priority', text: 'Priority' },
+    { value: 'date', text: 'Date' },
+  ];
+
+  sorting.forEach((s) => {
+    const option = new Option(s.text, s.value);
+    taskSorting.add(option);
+  });
+
+  const taskFilterLabel = document.createElement('label');
+  taskFilterLabel.textContent = 'Filter by:';
+  taskFilterLabel.setAttribute('for', 'task-filter');
+
   const taskFilter = document.createElement('select');
   taskFilter.classList.add('filter');
   taskFilter.id = 'task-filter';
   const priority = [
     { value: 'all', text: 'All' },
-    { value: 'priority', text: 'Priority' },
-    { value: 'date', text: 'Date' },
     { value: 'done', text: 'Done' },
     { value: 'undone', text: 'Undone' },
+    { value: 'deadline', text: 'Missed deadline' },
   ];
 
   priority.forEach((p) => {
@@ -27,13 +51,15 @@ export const createContent = () => {
     taskFilter.add(option);
   });
 
-  const taskFilterLabel = document.createElement('label');
-  taskFilterLabel.textContent = 'Filter by:';
-  taskFilterLabel.setAttribute('for', 'task-filter');
-
   const filterContainer = document.createElement('div');
   filterContainer.classList.add('filter-container');
   filterContainer.append(taskFilterLabel, taskFilter);
+
+  const sortingContainer = document.createElement('div');
+  sortingContainer.classList.add('sorting-container');
+  sortingContainer.append(taskSortLabel, taskSorting);
+
+  organizing.append(filterContainer, sortingContainer);
 
   const clearAllBtn = document.createElement('button');
   clearAllBtn.classList.add('clear-all-task-btn', 'clear-btn');
@@ -44,5 +70,5 @@ export const createContent = () => {
   tasksDiv.classList.add('tasks');
 
   // добавляем в aside
-  content.append(projectTitle, filterContainer, createNewTaskBtn, clearAllBtn, tasksDiv);
+  content.append(projectTitle, organizing, createNewTaskBtn, clearAllBtn, tasksDiv);
 };
