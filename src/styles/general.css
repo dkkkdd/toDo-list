@@ -131,6 +131,7 @@ label[for='task-sorting'] {
 .drag-chosen {
   border: 2px dashed var(--sub-theme-color);
   opacity: 0.8;
+  box-shadow: 0 0 15px var(--sub-theme-color);
 }
 
 .dragging {
@@ -139,7 +140,4 @@ label[for='task-sorting'] {
 
 .sortable-fallback {
   opacity: 0 !important;
-  transform: scale(1.02) !important;
-  z-index: 9999 !important;
-  pointer-events: none;
 }

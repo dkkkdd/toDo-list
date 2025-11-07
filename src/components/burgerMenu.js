@@ -19,7 +19,10 @@ export const setupBurgerMenu = () => {
   // закрытие при клике в зону контента
   document.addEventListener('click', (e) => {
     // если клик произошёл внутри контента
-    if (content.contains(e.target) && !e.target.closest('.form-window')) {
+    if (
+      (content.contains(e.target) && !e.target.closest('.form-window')) ||
+      e.target.contains(document.body)
+    ) {
       aside.classList.remove('open');
       burger.classList.remove('active');
     }

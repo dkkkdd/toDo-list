@@ -39,7 +39,9 @@
   background: var(--sub-theme-color);
   border-radius: 10px;
 }
-
+.aside .filter-container {
+  max-height: 2em;
+}
 /* Контейнер проектов */
 .projects {
   display: flex;
