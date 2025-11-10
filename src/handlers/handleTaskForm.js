@@ -1,14 +1,14 @@
 // handlers/handleTaskForm.js
-import { setupFormHandlers } from './setupFormHandlers.js';
-import { projectStore } from '../stores/projectStore.js';
-import { taskStore } from '../stores/taskStore.js';
-import { renderTasks } from '../render/tasks.js';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
+import { setupFormHandlers } from './setupFormHandlers.js';
+import { renderTasks } from '../render/tasks.js';
+import { projectStore } from '../stores/projectStore.js';
+import { taskStore } from '../stores/taskStore.js';
+
 export const setupTaskFormHandlers = () => {
   setupFormHandlers({
-    type: 'task',
     formSelector: '.task-form',
     formWindowSelector: '.task-form-window',
     openBtnSelector: '.create-task-btn',
@@ -31,7 +31,7 @@ export const setupTaskFormHandlers = () => {
       });
       renderTasks(document.querySelector('.tasks'), taskStore.getFiltered());
     },
-    onUpdate: (id) => {
+    onUpdate: () => {
       renderTasks(document.querySelector('.tasks'), taskStore.getFiltered());
     },
   });

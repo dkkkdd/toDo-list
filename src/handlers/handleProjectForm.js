@@ -1,13 +1,12 @@
 // // handlers/handleProjectForm.js
 
 import { setupFormHandlers } from './setupFormHandlers.js';
-import { projectStore } from '../stores/projectStore.js';
 import { renderProjects } from '../render/projects.js';
 import { renderTasks } from '../render/tasks.js';
+import { projectStore } from '../stores/projectStore.js';
 
 export const setupProjectFormHandlers = () => {
   setupFormHandlers({
-    type: 'project',
     formSelector: '.project-form',
     formWindowSelector: '.project-form-window',
     openBtnSelector: '.create-btn',

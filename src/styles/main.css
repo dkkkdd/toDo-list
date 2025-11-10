@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
 
 @import './null.css';
 @import './fonts.css';
@@ -9,6 +9,7 @@
 @import './content.css';
 @import './adaption.css';
 
+/* 🎨 Цветовые переменные */
 :root {
   --sub-theme-color: rgb(64, 62, 160);
   --body-color: #fff;
@@ -21,59 +22,107 @@
   --btn-bg: #f5f7fa;
   --error-color: rgb(177, 71, 71);
   --missed-deadline: #ffe484;
+
+  /* мягкие тени */
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* 🌑 Тёмная тема */
 :root.dark {
   --body-color: #131313;
-  --text-color: #fff;
+  --text-color: #f9f9f9;
   --border-card-color: #3a3a3a;
-  --card-color: rgb(20, 20, 20);
+  --card-color: #1b1b1b;
   --card-color-hover: #131313;
   --card-border-hover: #808080;
   --important-project-card: #222;
   --btn-bg: #272727;
-
   --missed-deadline: #3b3726;
+
+  --shadow-light: 0 2px 8px rgba(255, 255, 255, 0.05);
+  --shadow-strong: 0 4px 16px rgba(255, 255, 255, 0.08);
 }
 
+/* 🔹 Утилита для скрытия */
 .none {
-  display: none;
+  display: none !important;
 }
 
+/* ===============================
+   ГЛОБАЛЬНЫЙ СТИЛЬ ТЕКСТА И ТЕЛА
+================================= */
 body {
   position: relative;
-  background-color: var(--body-color);
+  background: var(--body-color);
   color: var(--text-color);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;
-  transition: all 0.3s ease;
+  font-family: 'Roboto', system-ui, sans-serif;
+  line-height: 1.5;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* ===============================
+   ОСНОВНАЯ СЕТКА
+================================= */
 .container {
   padding: 0 1em;
+  margin: 0 auto;
+  max-width: 1600px;
 }
 
+/* ===============================
+   ХЕДЕР
+================================= */
 .header {
   color: var(--text-color);
-  padding: 1.2em 0;
+  padding: 1em 0;
   text-align: center;
   font-size: 1.6em;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  position: relative;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  box-shadow: var(--shadow-strong);
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
   letter-spacing: 0.5px;
-}
-@media (max-width: 450px) {
-  .header {
-    font-size: 25px;
-  }
+  background: var(--card-color);
+  position: relative;
+  z-index: 5;
 }
 
+.header .icon-home {
+  margin-right: 0.3em;
+  color: var(--sub-theme-color);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.header:hover .icon-home {
+  transform: rotate(-15deg) scale(1.1);
+  color: color-mix(in srgb, var(--sub-theme-color) 80%, #777);
+}
+
+/* ===============================
+   МЕЙН-КОНТЕНТ
+================================= */
 .main {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
   margin: 1em 0;
+}
+
+/* адаптив */
+@media (max-width: 450px) {
+  .header {
+    font-size: 1.4em;
+    padding: 0.8em 0;
+  }
+
+  body {
+    font-size: 18px;
+  }
 }

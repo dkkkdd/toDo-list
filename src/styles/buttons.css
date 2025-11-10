@@ -1,101 +1,103 @@
-.clear-btn {
-  max-width: 7em;
-  font-size: 0.8em;
-  border-radius: 12px;
-  padding: 1em 1.4em;
-  font-size: 1em;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--text-color);
-  background: var(--btn-bg);
-}
-
-.clear-btn:hover {
-  background: var(--important-project-card);
-}
-
-/*  aside/content btns */
+/* универсальная кнопка */
 .btn {
   position: relative;
-  max-width: 10em;
-  border-radius: 12px;
-  padding: 1em 1.4em;
-  min-height: 3em;
-  font-size: 1em;
-  font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6em;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: 0.45em;
+
+  padding: 0.55em 1.2em;
+  border-radius: 0.6em;
+  font-size: 0.9em; /* ~18px при body=20px */
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+
   color: var(--text-color);
-
-  background: var(--btn-bg);
-  z-index: 0;
+  background: var(--card-color);
+  cursor: pointer;
+  transition: all 0.25s ease;
   overflow: hidden;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: fit-content; /* ❗ теперь не растягивается */
+  min-width: auto;
 }
 
-.btn::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    var(--body-color),
-    var(--sub-theme-color),
-    var(--body-color),
-    var(--sub-theme-color),
-    var(--body-color)
-  );
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.btn.create-btn::before {
-  animation: rotateBorder 9s linear infinite;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
-  background: var(--btn-bg);
-  border-radius: 10px;
-  z-index: -1;
-}
-
-@keyframes rotateBorder {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+/* плавная подсветка при наведении */
 .btn:hover {
   color: var(--sub-theme-color);
   transform: translateY(-1px);
-  box-shadow: 0 0px 10px var(--sub-theme-color);
+  box-shadow: 0 0 10px var(--sub-theme-color, rgba(0, 0, 0, 0.15));
 }
 
+/* активное состояние */
 .btn:active {
   transform: translateY(0);
   opacity: 0.9;
 }
 
-:root.dark .btn:hover {
-  color: var(--sub-theme-color);
+/* динамичная световая анимация вокруг границ */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    var(--sub-theme-color) 40%,
+    var(--important-project-card) 60%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+/* при hover — активируем мягкое сияние */
+.btn:hover::before {
+  opacity: 0.35;
+  animation: borderGlow 2.8s linear infinite;
+}
+
+/* движение света */
+@keyframes borderGlow {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+/* в тёмной теме чуть ярче */
+:root.dark .btn:hover::before {
+  opacity: 0.5;
+}
+
+/* “очистить” — второстепенная */
+.clear-btn {
+  font-size: 0.85em;
+  padding: 0.5em 1.1em;
+  border-radius: 0.6em;
+  font-weight: 500;
+  background: var(--card-color);
+  color: var(--text-color);
+  cursor: pointer;
+  border: none;
+  width: fit-content;
+  transition: all 0.25s ease;
+}
+
+.clear-btn:hover {
+  /* color: var(--sub-theme-color); */
+  background: color-mix(in srgb, var(--card-color) 80%, var(--sub-theme-color) 20%);
+  transform: translateY(-1px);
+}
+
+/* если хочешь, чтобы create-btn чуть выделялась */
+.create-btn {
+  background: color-mix(in srgb, var(--card-color) 90%, var(--sub-theme-color) 10%);
 }

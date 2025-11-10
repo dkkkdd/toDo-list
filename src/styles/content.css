@@ -1,70 +1,91 @@
 .content {
   flex: 1;
   overflow-y: auto;
-  margin: 0 auto;
+  margin: 0 auto 1em;
   background: var(--body-color);
-  border-radius: 18px;
-  padding: 2em 1.5em;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  padding: 1.2em 1.4em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.2em;
   position: relative;
-  margin-bottom: 1em;
   z-index: 2;
+  transition: all 0.3s ease;
 }
+
 .project-title-for-task {
-  line-height: 130%;
+  line-height: 1.3;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--text-color);
 }
+
 .tasks {
   display: flex;
   flex-direction: column;
-  gap: 0.4em;
+  gap: 0.5em;
 }
+
+/* карточка задачи */
 .task-card {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1em 1.2em;
-  border-radius: 12px;
+  gap: 0.7em;
+  padding: 0.8em 1.2em;
+  border-radius: 0.8em;
   background: var(--card-color);
   color: var(--text-color);
-  border: 1px solid var(--border-card-color);
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.25s ease;
-  gap: 0.5em;
 }
+
 .task-card:hover {
-  border-color: var(--card-border-hover);
-  box-shadow: 0 0px 4px var(--sub-theme-color);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  background: color-mix(in srgb, var(--card-color) 90%, var(--sub-theme-color) 10%);
+  transform: translateY(-1px);
 }
-.task-card.done .task-title {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
+
+/* состояние выполненной задачи */
 .task-card.done {
   opacity: 0.6;
+  background: color-mix(in srgb, var(--card-color) 80%, #ddd 20%);
+  box-shadow: none;
+}
+
+.task-card.done .task-title {
+  text-decoration: line-through;
+}
+
+/* содержимое карточки */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.25em;
 }
 
 .task-title {
+  font-size: 0.95em;
+  font-weight: 500;
+  line-height: 1.3;
   overflow-wrap: anywhere;
-  line-height: 120%;
 }
 
-/* ========================== */
+/* комментарий к задаче */
 .task-comment {
-  color: #777;
-  font-size: 0.9em;
+  color: #888;
+  font-size: 0.8em;
 }
 
-.main-task-content {
+/* блок даты */
+.date {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  flex-grow: 1;
-}
-.task-deadline {
-  font-size: 0.7em;
+  gap: 0.3em;
+  font-size: 0.75em;
   color: #3a856e;
 }
 
@@ -74,56 +95,70 @@
 }
 
 .task-card.overdue {
-  background-color: var(--missed-deadline);
-}
-.date {
-  display: flex;
-  gap: 0.2em;
-  align-items: center;
+  background: color-mix(in srgb, var(--card-color) 85%, var(--error-color) 15%);
 }
 
-.task-card .main-task-content .setting .priority {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  background-color: var(--sub-theme-color);
-  border-radius: 50%;
-  padding: 3px;
-  color: #fff;
-}
-.task-card .main-task-content .setting .priority:hover {
-  transform: scale(1);
-  cursor: default;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  width: 100%;
-  gap: 0.3em;
-}
-
+/* радио-иконки */
 .icon-radio-checked,
 .icon-radio-unchecked {
   color: var(--text-color);
   cursor: pointer;
+  font-size: 1em;
+  transition: color 0.2s ease;
 }
 
-.icon-radio-checked,
 .icon-radio-unchecked:hover {
-  color: #777;
+  color: var(--sub-theme-color);
 }
 
-.tasks,
-.content {
-  -webkit-overflow-scrolling: touch; /* smooth scroll на iOS */
-  touch-action: pan-y; /* разрешает вертикальный скролл */
+/* ======================
+   ПРИОРИТЕТ (ЗВЁЗДОЧКА)
+====================== */
+
+.task-card .priority {
+  position: absolute;
+  top: -0.4em;
+  left: -0.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  background: var(--sub-theme-color);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.85em;
+  box-shadow: 0 0 4px color-mix(in srgb, var(--sub-theme-color) 50%, transparent);
+  pointer-events: none; /* убираем hover и клики со звезды */
 }
+
+.task-card .priority span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 0.95em;
+}
+
+/* основной блок внутри задачи */
+.main-task-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* блок сортировки / фильтрации */
 .organizing {
   display: flex;
   align-items: center;
-  /* justify-content: space */
-  gap: 1em;
+  gap: 0.8em;
   width: 100%;
+}
+
+/* мягкий скролл */
+.tasks,
+.content {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }

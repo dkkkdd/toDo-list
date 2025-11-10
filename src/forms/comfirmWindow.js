@@ -1,6 +1,8 @@
-import { createForm } from '../forms/formFactory.js';
+import { createForm } from './formFactory.js';
 
-export const comfirmWindow = createForm({
-  type: 'confirm',
-  submitText: 'Delete',
-});
+export const initConfirmWindow = () => {
+  return createForm({
+    type: 'confirm',
+    submitText: 'Delete',
+  });
+};

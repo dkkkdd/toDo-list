@@ -1,141 +1,180 @@
-/* фильтер */
-.filter,
-.sorting {
+/* =========================
+   ФИЛЬТРЫ И СОРТИРОВКА (АДАПТИВНЫЕ)
+========================= */
+.filters-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid var(--important-project-card);
-  font-size: 1em;
-  color: #747474;
-  outline: none;
-  transition: border-color 0.2s ease;
-  padding: 0.3em 0.5em;
 }
+
 .filter-container,
 .sorting-container {
   display: flex;
-  align-items: center;
-  gap: 1em;
+  flex-direction: column;
   flex: 1;
-  width: 100%;
-}
-
-.filter-container select,
-.sorting-container select {
-  width: 100%;
-}
-
-.filter:focus,
-.filter:hover,
-.sorting:focus,
-.sorting:hover {
-  border-color: var(--sub-theme-color);
+  min-width: 12em;
+  gap: 0.25em; /* маленький отступ между label и select */
 }
 
 label[for='project-priority-filter'],
 label[for='task-filter'],
 label[for='task-sorting'] {
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #777;
   font-weight: 500;
-  width: 6em;
+  margin-bottom: 0.1em;
 }
 
-/* ====тема */
+/* поля */
+.filter,
+.sorting {
+  width: 100%;
+  background: var(--card-color);
+  border: 1.5px solid var(--border-card-color);
+  border-radius: 0.5em;
+  padding: 0.4em 0.8em;
+  font-size: 0.9em;
+  color: var(--text-color);
+  outline: none;
+  appearance: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.filter:hover,
+.sorting:hover,
+.filter:focus,
+.sorting:focus {
+  border-color: var(--sub-theme-color);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--sub-theme-color) 40%, transparent);
+  background: color-mix(in srgb, var(--card-color) 90%, var(--sub-theme-color) 6%);
+}
+
+/* =========================
+   ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
+========================= */
 .t {
-  margin-top: 1em;
+  margin-top: 0.8em;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: fit-content;
-  padding: 0.3em 0.6em;
-  border-radius: 30px;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  border-radius: 2em;
   cursor: pointer;
-  background: linear-gradient(135deg, transparent, var(--sub-theme-color)) border-box;
-  border: 2px solid transparent;
-  background-clip: padding-box, border-box;
-  background-origin: border-box;
-  background-image:
-    linear-gradient(var(--body-color, #fff), var(--body-color, #fff)),
-    linear-gradient(135deg, var(--sub-theme-color), transparent); /* градиент рамки */
-  box-shadow: 0 0 5px var(--sub-theme-color);
+  background: var(--card-color);
+  border: 1.5px solid var(--border-card-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+}
+
+.t:hover {
+  box-shadow: 0 0 10px color-mix(in srgb, var(--sub-theme-color) 60%, transparent);
+  border-color: var(--sub-theme-color);
 }
 
 .theme span {
   color: #6e6e6e;
-  padding: 0.5em 0.3em;
+  padding: 0.4em 0.3em;
   font-size: 1.2em;
   transition: all 0.3s ease;
 }
 
 .theme span.active {
   color: var(--sub-theme-color);
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
-.t:hover {
-  box-shadow: 0 0 10px var(--sub-theme-color);
-}
-
-/* Иконки в настройках проекта */
+/* =========================
+   НАСТРОЙКИ ИКОНКИ
+========================= */
 .setting {
   display: flex;
-  gap: 0.8em;
-  font-size: 1.2em;
+  gap: 0.7em;
+  font-size: 1.1em;
   color: #999;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .setting span:hover {
   cursor: pointer;
   transform: scale(1.1);
+  color: var(--sub-theme-color);
 }
+
+/* =========================
+   ПУСТОЕ СОСТОЯНИЕ
+========================= */
 .empty-div {
-  font-size: 1em;
+  font-size: 0.95em;
   font-weight: 500;
   text-align: center;
   color: #aaa;
-  padding: 3em 1em;
+  padding: 2.2em 1em;
   border: 1px dashed #ddd;
-  border-radius: 12px;
-  background: var(--body-color);
-  font-family: 'Roboto';
+  border-radius: 0.8em;
+  background: var(--card-color);
+  font-family: 'Inter', 'Roboto', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* =========================
+   ВЫБОР ЦВЕТА
+========================= */
 #color {
-  width: 2em;
-  height: 2em;
+  width: 1.8em;
+  height: 1.8em;
   cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid var(--border-card-color);
+  background: transparent;
+  transition: all 0.2s ease;
 }
+
+#color:hover {
+  border-color: var(--sub-theme-color);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--sub-theme-color) 60%, transparent);
+}
+
 .color-theme {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  cursor: default;
+  gap: 0.4em;
 }
 
 .icon-eyedropper {
   color: var(--sub-theme-color);
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
+/* =========================
+   ТЕМАТИЧЕСКИЙ БЛОК
+========================= */
 .theme-settings {
   display: flex;
   gap: 1em;
+  flex-wrap: wrap;
 }
+
+/* =========================
+   DRAG & DROP СОСТОЯНИЯ
+========================= */
 .drag-ghost {
-  opacity: 1;
+  opacity: 0.95;
   transform: scale(1.02);
 }
 
 .drag-chosen {
   border: 2px dashed var(--sub-theme-color);
-  opacity: 0.8;
-  box-shadow: 0 0 15px var(--sub-theme-color);
+  opacity: 0.85;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--sub-theme-color) 50%, transparent);
 }
 
 .dragging {
-  cursor: grab;
+  cursor: grabbing;
 }
 
 .sortable-fallback {

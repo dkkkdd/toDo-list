@@ -1,20 +1,19 @@
-import { projectForm } from '../forms/projectForm.js';
-import { taskForm } from '../forms/taskForm.js';
-import { comfirmWindow } from '../forms/comfirmWindow.js';
-
-import { switchTheme, chooseColorTheme } from './theme.js';
 import { createAside } from './aside.js';
+import { setupBurgerMenu } from './burgerMenu.js';
 import { createContent } from './content.js';
+import { switchTheme, chooseColorTheme } from './theme.js';
+import { initConfirmWindow } from '../forms/comfirmWindow.js';
+import { initProjectForm } from '../forms/projectForm.js';
+import { initTaskForm } from '../forms/taskForm.js';
+import { setupDragFunction } from '../handlers/handleDrag.js';
+import { setupProjectActionHandlers } from '../handlers/handleProjectActions.js';
+import { setupProjectFormHandlers } from '../handlers/handleProjectForm.js';
+import { setupTaskActionHandlers } from '../handlers/handleTaskActions.js';
+import { setupTaskFormHandlers } from '../handlers/handleTaskForm.js';
 import { renderProjects } from '../render/projects.js';
 import { renderTasks } from '../render/tasks.js';
 import { projectStore } from '../stores/projectStore.js';
 import { taskStore } from '../stores/taskStore.js';
-import { setupProjectFormHandlers } from '../handlers/handleProjectForm.js';
-import { setupProjectActionHandlers } from '../handlers/handleProjectActions.js';
-import { setupTaskFormHandlers } from '../handlers/handleTaskForm.js';
-import { setupTaskActionHandlers } from '../handlers/handleTaskActions.js';
-import { setupBurgerMenu } from './burgerMenu.js';
-import { setupDragFunction } from '../handlers/handleDrag.js';
 
 // 💡 Главная функция инициализации страницы
 export const initialPage = () => {
@@ -22,6 +21,9 @@ export const initialPage = () => {
   chooseColorTheme();
   createAside();
   createContent();
+  initProjectForm();
+  initTaskForm();
+  initConfirmWindow();
 
   const projectsDiv = document.querySelector('.projects');
   const tasksDiv = document.querySelector('.tasks');

@@ -1,9 +1,9 @@
 // handlers/handleProjectActions.js
+import { modalManipulation } from '../forms/formManipulation.js';
 import successSoundFile from '../sounds/done.mp3';
+import { formStore } from '../stores/formStore.js';
 import { projectStore } from '../stores/projectStore.js';
 import { taskStore } from '../stores/taskStore.js';
-import { modalManipulation } from '../forms/formManipulation.js';
-import { formStore } from '../stores/formStore.js';
 
 export const setupTaskActionHandlers = () => {
   const taskFilter = document.querySelector('#task-filter');

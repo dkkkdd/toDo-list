@@ -1,11 +1,10 @@
 // handlers/handleProjectActions.js
+import { modalManipulation } from '../forms/formManipulation.js';
+import { renderTasks } from '../render/tasks.js';
+import clickSoundFile from '../sounds/click.mp3';
+import { formStore } from '../stores/formStore.js';
 import { projectStore } from '../stores/projectStore.js';
 import { taskStore } from '../stores/taskStore.js';
-import { renderTasks } from '../render/tasks.js';
-import { modalManipulation } from '../forms/formManipulation.js';
-import { formStore } from '../stores/formStore.js';
-
-import clickSoundFile from '../sounds/click.mp3';
 const clickSound = new Audio(clickSoundFile);
 export const setupProjectActionHandlers = () => {
   const projectsDiv = document.querySelector('.projects');

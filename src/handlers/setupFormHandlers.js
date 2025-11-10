@@ -1,8 +1,8 @@
 // handlers/setupFormHandlers.js
-import { modalManipulation } from '../forms/formManipulation.js';
 import { clearForm, projectFormValidation } from '../forms/clearAndValidForm.js';
-import { formStore } from '../stores/formStore.js';
+import { modalManipulation } from '../forms/formManipulation.js';
 import clickSoundFile from '../sounds/click.mp3';
+import { formStore } from '../stores/formStore.js';
 const clickSound = new Audio(clickSoundFile);
 
 /**
@@ -23,7 +23,6 @@ const clickSound = new Audio(clickSoundFile);
  */
 export const setupFormHandlers = (config) => {
   const {
-    type,
     formSelector,
     formWindowSelector,
     openBtnSelector,

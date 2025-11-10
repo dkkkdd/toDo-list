@@ -1,3 +1,6 @@
+/* ==========================
+   БУРГЕР-МЕНЮ
+========================== */
 .burger {
   display: none;
   flex-direction: column;
@@ -5,16 +8,21 @@
   align-items: center;
   width: 2.6em;
   height: 2.6em;
-  border-radius: 8px;
-  background: var(--body-color);
+  border-radius: 10px;
+  background: var(--card-color);
   border: 1px solid var(--border-card-color);
   cursor: pointer;
   position: fixed;
   top: 1em;
   left: 1em;
-  z-index: 100;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 120;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.burger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .burger span {
@@ -29,15 +37,22 @@
 
 /* Анимация при активном состоянии */
 .burger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 .burger.active span:nth-child(2) {
   opacity: 0;
 }
 .burger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
+.clear-all-projects-btn {
+  margin-top: 2em;
+}
+
+/* ==========================
+   АДАПТАЦИЯ
+========================== */
 @media (max-width: 1450px) {
   .aside {
     width: 20em;
@@ -46,18 +61,11 @@
     font-size: 18px;
   }
 }
-/* Мобильная версия */
-@media (max-width: 1050px) {
-  .aside {
-    width: 15em;
-  }
-  body {
-    font-size: 16px;
-  }
 
-  .theme-settings {
-    max-height: 3em;
-  }
+/* ==========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================== */
+@media (max-width: 1050px) {
   .burger {
     display: flex;
   }
@@ -65,55 +73,72 @@
   .aside {
     position: fixed;
     top: 0;
-    left: -100%;
+    left: -110%;
     height: 100%;
+    min-height: 100vh;
     max-width: 18em;
     width: 80%;
-    padding: 4.5em 1.2em 2em 1.2em;
+    padding: 4.5em 1.2em 2em;
+    background: var(--body-color);
     box-shadow: 6px 0 20px rgba(0, 0, 0, 0.25);
-    transition: left 0.35s ease;
-    z-index: 90;
+    transition: left 0.4s cubic-bezier(0.45, 0, 0.25, 1);
+    z-index: 100;
     border-radius: 0 18px 18px 0;
+    overflow-y: auto;
   }
 
   .aside.open {
     left: 0;
   }
-
-  .content {
-    padding: 1.2em;
-  }
-
-  .organizing {
-    flex-direction: column;
-  }
 }
 
+/* ==========================
+   МАЛЕНЬКИЕ ЭКРАНЫ
+========================== */
 @media (max-width: 550px) {
-  /* .project-card {
-    font-size: 14px;
-  }
-  .btn {
-    font-size: 14px;
-  } */
-
   body {
     font-size: 14px;
   }
+
   .aside {
     gap: 1em;
-    padding: 4em 0.5em;
+    padding: 4em 0.6em;
   }
+
   .content {
-    padding: 1em 0.5em;
+    padding: 1em 0.6em;
     gap: 1em;
   }
+
   .setting {
     gap: 0.5em;
   }
+
   .icon-flag,
   .icon-pencil,
   .icon-bin2 {
     font-size: 18px;
+  }
+
+  .burger {
+    width: 2.4em;
+    height: 2.4em;
+  }
+}
+@media (max-width: 1050px) {
+  .organizing {
+    flex-direction: column;
+    gap: 0.6em;
+  }
+
+  .filter-container,
+  .sorting-container {
+    width: 100%;
+  }
+
+  .filter,
+  .sorting {
+    font-size: 0.85em;
+    padding: 0.4em 0.7em;
   }
 }

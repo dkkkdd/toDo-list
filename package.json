@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
-    "deploy": "npm run build && git subtree push --prefix dist origin main"
+    "deploy": "npm run build && git subtree push --prefix dist origin main",
+    "lint": "eslint src --ext .js",
+    "lint:fix": "eslint src --ext .js --fix"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,15 @@
   },
   "homepage": "https://github.com/dkkkdd/toDo-list#readme",
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
     "html-webpack-plugin": "^5.6.4",
     "image-webpack-loader": "^8.1.0",
     "mini-css-extract-plugin": "^2.9.4",
